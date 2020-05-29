@@ -1,0 +1,16 @@
+#!/bin/bash
+DEBIAN_FRONTEND=noninteractive apt-get -yq update > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -yq install openjdk-8-jdk wget nginx > /dev/null
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+apt-get -yq install apt-transport-https > /dev/null
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -yq update > /dev/null && DEBIAN_FRONTEND=noninteractive apt-get -yq install elasticsearch > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -yq update > /dev/null && DEBIAN_FRONTEND=noninteractive apt-get -yq install kibana > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get -yq update > /dev/null && DEBIAN_FRONTEND=noninteractive apt-get -yq install apm-server > /dev/null
+
+/bin/systemctl -q daemon-reload > /dev/null
+/bin/systemctl -q enable elasticsearch.service > /dev/null
+/bin/systemctl -q enable kibana.service > /dev/null
+/bin/systemctl -q enable apm-server.service > /dev/null

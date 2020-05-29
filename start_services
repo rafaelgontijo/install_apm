@@ -1,0 +1,4 @@
+#!/bin/bash
+/bin/systemctl -q start elasticsearch.service > /dev/null
+/bin/systemctl -q start kibana.service > /dev/null
+/bin/systemctl -q start apm-server.service > /dev/null
