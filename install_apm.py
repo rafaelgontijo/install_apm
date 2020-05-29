@@ -54,13 +54,16 @@ def main():
     print("Create configs...")
 
     # elasticsearch
-    replace_configs(APM_CONFIG_TEMPLATE, APM_CONFIG_PATH, args)
+    replace_configs(
+        APM_CONFIG_TEMPLATE, APM_CONFIG_PATH, args)
 
     # kibana
-    replace_configs(ELASTICSEARCH_CONFIG_TEMPLATE, ELASTICSEARCH_CONFIG_PATH, args)
+    replace_configs(
+        ELASTICSEARCH_CONFIG_TEMPLATE, ELASTICSEARCH_CONFIG_PATH, args)
 
     # apm
-    replace_configs(KIBANA_CONFIG_TEMPLATE, KIBANA_CONFIG_PATH, args)
+    replace_configs(
+        KIBANA_CONFIG_TEMPLATE, KIBANA_CONFIG_PATH, args)
 
     # nginx
     nginx_site_available_path = f"/etc/nginx/sites-available/{args.host}"

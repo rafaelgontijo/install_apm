@@ -1,4 +1,5 @@
 #!/bin/bash
-/bin/systemctl -q start elasticsearch.service > /dev/null
-/bin/systemctl -q start kibana.service > /dev/null
-/bin/systemctl -q start apm-server.service > /dev/null
+/bin/systemctl -q restart elasticsearch.service > /dev/null
+/bin/systemctl -q restart kibana.service > /dev/null
+/bin/systemctl -q restart apm-server.service > /dev/null
+/bin/systemctl -q restart nginx.service > /dev/null
