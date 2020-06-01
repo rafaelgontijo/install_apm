@@ -78,7 +78,7 @@ def main():
     print("Set passwords...")
     subprocess.check_call(
         ["echo",
-         f"'{args.password}'",
+         f"{args.password}",
          "|",
          "/usr/share/elasticsearch/bin/elasticsearch-keystore",
          "add", "-x", "'bootstrap.password'"],
@@ -86,9 +86,9 @@ def main():
         stderr=subprocess.STDOUT
     )
 
-    print("Start services...")
+    print("Restart services...")
     subprocess.check_call(
-        ["./start_services"],
+        ["./restart_services"],
         stdout=open(os.devnull, 'wb'),
         stderr=subprocess.STDOUT
     )
