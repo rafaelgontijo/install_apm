@@ -3,7 +3,6 @@ import argparse
 import subprocess
 import os
 import fileinput
-import secrets
 
 APM_CONFIG_TEMPLATE = "apm-server.template.yml"
 APM_CONFIG_PATH = "/etc/apm-server/apm-server.yml"
@@ -33,11 +32,10 @@ def main():
 
     parser.add_argument("--host", help="host")
     parser.add_argument("--password", help="password")
+    parser.add_argument("--secret_token", help="password")
 
     # Parse all command line arguments
     args = parser.parse_args()
-
-    args.secret_token = secrets.token_hex()
 
     print(
         f"""Host: {args.host} \
