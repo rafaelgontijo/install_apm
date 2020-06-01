@@ -51,6 +51,17 @@ def main():
         stderr=subprocess.STDOUT
     )
 
+    print("Set passwords...")
+    subprocess.check_call(
+        ["echo",
+         f"{args.password}",
+         "|",
+         "/usr/share/elasticsearch/bin/elasticsearch-keystore",
+         "add", "-x", "'bootstrap.password'"],
+        stdout=open(os.devnull, 'wb'),
+        stderr=subprocess.STDOUT
+    )
+
     print("Create configs...")
 
     # elasticsearch
@@ -71,17 +82,6 @@ def main():
     replace_configs(NGINX_CONFIG_TEMPLATE, nginx_site_available_path, args)
     subprocess.check_call(
         ["ln", "-sf", nginx_site_available_path, nginx_site_enabled_path],
-        stdout=open(os.devnull, 'wb'),
-        stderr=subprocess.STDOUT
-    )
-
-    print("Set passwords...")
-    subprocess.check_call(
-        ["echo",
-         f"{args.password}",
-         "|",
-         "/usr/share/elasticsearch/bin/elasticsearch-keystore",
-         "add", "-x", "'bootstrap.password'"],
         stdout=open(os.devnull, 'wb'),
         stderr=subprocess.STDOUT
     )
