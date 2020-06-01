@@ -32,7 +32,7 @@ def main():
 
     parser.add_argument("--host", help="host")
     parser.add_argument("--password", help="password")
-    parser.add_argument("--secret_token", help="password")
+    parser.add_argument("--secret_token", help="secret_token")
 
     # Parse all command line arguments
     args = parser.parse_args()
