@@ -52,15 +52,7 @@ def main():
     )
 
     print("Set passwords...")
-    subprocess.check_call(
-        ["echo",
-         f"{args.password}",
-         "|",
-         "/usr/share/elasticsearch/bin/elasticsearch-keystore",
-         "add", "-x", "'bootstrap.password'"],
-        stdout=open(os.devnull, 'wb'),
-        stderr=subprocess.STDOUT
-    )
+    os.system(f"echo {args.password} | /usr/share/elasticsearch/bin/elasticsearch-keystore add -x 'bootstrap.password'")
 
     print("Create configs...")
 
